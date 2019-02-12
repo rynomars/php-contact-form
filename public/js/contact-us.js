@@ -47,15 +47,11 @@
                         handleValidationError(formData, xhr);
                     } else {
                         handleServerError();
-                        console.log('something bad happened!');
                     }
                 })
                 .done(function(data) {
                     $('#contact-us-content').addClass('hidden');
                     $('#contact-us-success').removeClass('hidden');
-                    console.log(data);
-
-                    // here we will handle errors and validation messages
                 });
 
             // stop the form from submitting the normal way and refreshing the page
@@ -73,8 +69,6 @@
 
         const formFields = Object.keys(formData);
         const errors = xhr.responseJSON.errors;
-
-        console.log('formFields', formFields);
 
         $('#contact-us-error-message').text('Please fix the issues and resubmit');
 
@@ -100,7 +94,6 @@
                     $('#contact-us-label-' + formFields[i]).addClass('text-danger');
                     $('#contact-us-help-' + formFields[i]).addClass('text-danger');
                     for (var j=0; j<errors[formFields[i]].length; j++) {
-                        console.log('error', errors[formFields[i]][j]);
                         $('#contact-us-help-' + formFields[i]).append('<li>' + errors[formFields[i]][j] + '</li>');
                     }
                 } else {
